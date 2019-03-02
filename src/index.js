@@ -9,7 +9,11 @@ import { Amplitude } from "./utils/amplitude";
 ReactDOM.render(<App />, document.getElementById("root"));
 
 const isConnectedInPWA = window.location.search.indexOf("source=pwa") > -1;
-Amplitude.logEvent("CONNECT", { pwa: isConnectedInPWA });
+
+Amplitude.logEvent("CONNECT", {
+  pwa: isConnectedInPWA,
+  referrer: document.referrer
+});
 
 initSentry();
 // If you want your app to work offline and load faster, you can change
