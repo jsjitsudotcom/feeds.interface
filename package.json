@@ -82,8 +82,12 @@
   ],
   "jest": {
     "collectCoverageFrom": [
-      "src/**/*.{js,jsx,ts,tsx}",
-      "!src/**/*.d.ts"
+      "src/**/*.{js,jsx}",
+      "!src/index.js",
+      "!src/config/*",
+      "!src/utils/sentry.js",
+      "!src/utils/amplitude.js",
+      "!src/serviceWorker.js"
     ],
     "resolver": "jest-pnp-resolver",
     "setupFiles": [
