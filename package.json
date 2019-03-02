@@ -57,8 +57,20 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "test:ci": "CI=true node scripts/test.js --env=jsdom --coverage",
+    "coverage": "node scripts/test.js --env=jsdom --coverage",
+    "commit": "git-cz",
+    "do:release": "corp-semantic-release",
+    "coveralls": "cat ./coverage/lcov.info | npx coveralls",
+    "release": "npm run test:ci && npm run do:release && npm run build && npm run deploy:ci",
+    "load-css": "node scripts/load-css.js",
+    "deploy:production": "node scripts/deploy.js --stage production",
+    "deploy:ci": "CI=true npm run deploy:production",
+    "commitmsg": "commitlint -e $GIT_PARAMS",
+    "open-coverage": "open coverage/lcov-report/index.html",
+    "compress-all-files": "./scripts/compress-all-files.sh",
+    "build": "node scripts/build.js && npm run compress-all-files"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -118,5 +130,10 @@
     "presets": [
       "react-app"
     ]
+  },
+  "devDependencies": {
+    "compression-webpack-plugin": "^2.0.0",
+    "preload-webpack-plugin": "^2.3.0",
+    "webpack-bundle-analyzer": "^3.1.0"
   }
 }
