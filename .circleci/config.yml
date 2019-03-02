@@ -58,7 +58,7 @@ jobs:
       - save_cache: *save_cache
       - run: *add_git_user
       - run: yarn test:ci
-      - run: yarn release
+      - run: yarn do:release
       - run: yarn coveralls
       - run: yarn build
       - run: *install_aws_cli
