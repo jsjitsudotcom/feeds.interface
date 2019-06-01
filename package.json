@@ -57,19 +57,9 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
-    "test": "node scripts/test.js",
-    "test:ci": "CI=true node scripts/test.js --env=jsdom --coverage",
-    "coverage": "node scripts/test.js --env=jsdom --coverage",
-    "commit": "git-cz",
-    "do:release": "corp-semantic-release",
-    "coveralls": "cat ./coverage/lcov.info | npx coveralls",
-    "load-css": "node scripts/load-css.js",
-    "deploy:production": "node scripts/deploy.js --stage production",
-    "deploy:ci": "CI=true npm run deploy:production",
-    "commitmsg": "commitlint -e $GIT_PARAMS",
-    "open-coverage": "open coverage/lcov-report/index.html",
-    "compress-all-files": "./scripts/compress-all-files.sh",
-    "build": "node scripts/build.js && npm run compress-all-files"
+    "test": "CI=true node scripts/test.js",
+    "deploy": "aws s3 sync ./build s3://www.jsjitsu.com --acl public-read --region=eu-west-1",
+    "build": "node scripts/build.js"
   },
   "eslintConfig": {
     "extends": "react-app"
