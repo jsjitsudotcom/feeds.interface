@@ -31,7 +31,10 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
             - v1-dependencies-
-      - aws-cli/install
+      - run: 
+          command: |
+            sudo apt update   
+            sudo apt -y -qq install awscli
       - aws-cli/configure
       - run: yarn deploy
 
