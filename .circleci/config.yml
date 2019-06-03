@@ -1,4 +1,7 @@
-version: 2
+version: 2.1
+
+orbs:
+  aws-cli: circleci/aws-cli@0.1.11
 
 jobs:
   test:
@@ -28,10 +31,13 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
             - v1-dependencies-
-      - run: yarn test
+      - command: |
+          sudo apt update   
+          sudo apt -y -qq install awscli
+      - run: aws-cli/configure
+      - run: yarn deploy
 
 workflows:
-  version: 2
   test-the-application:
     jobs:
       - test:
