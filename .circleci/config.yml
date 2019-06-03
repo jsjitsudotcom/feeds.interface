@@ -34,7 +34,7 @@ jobs:
       - command: |
           sudo apt update   
           sudo apt -y -qq install awscli
-      - run: aws-cli/configure
+      - aws-cli/configure
       - run: yarn deploy
 
 workflows:
