@@ -53,13 +53,16 @@
     "webpack": "4.28.3",
     "webpack-dev-server": "3.1.14",
     "webpack-manifest-plugin": "2.0.4",
-    "workbox-webpack-plugin": "3.6.3"
+    "workbox-webpack-plugin": "3.6.3",
+    "snyk": "^1.189.0"
   },
   "scripts": {
     "start": "node scripts/start.js",
     "test": "CI=true node scripts/test.js",
     "deploy": "aws s3 sync ./build s3://www.jsjitsu.com --acl public-read --region=eu-west-1",
-    "build": "node scripts/build.js"
+    "build": "node scripts/build.js",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -150,5 +153,6 @@
       "prettier --write",
       "git add"
     ]
-  }
+  },
+  "snyk": true
 }
